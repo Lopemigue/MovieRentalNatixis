@@ -7,6 +7,9 @@ Can you help us fix some issues and implement missing features?
 
    `The issue was caused by registering RentalFeatures as a Singleton, while it depends on MovieRentalDbContext, wich is a Scoped service.`
  * The rental class has a method to save, but it is not async, can you make it async and explain to us what is the difference?
+
+    `The difference is that while async methods don’t block the thread, allowing it to do other work while waiting for the operation to finish (like saving to the database), non-async methods block the thread until the operation is done.
+Another difference is in performance — async methods scale better with many concurrent operations (in this case, multiple save operations to the database), while non-async methods can cause slowdowns under load (meaning when the system is busy handling a lot of tasks at the same time).`
  * Please finish the method to filter rentals by customer name, and add the new endpoint.
  * We noticed we do not have a table for customers, it is not good to have just the customer name in the rental.
    Can you help us add a new entity for this? Don't forget to change the customer name field to a foreign key, and fix your previous method!
