@@ -4,7 +4,8 @@ This is a dummy representation of a movie rental system.
 Can you help us fix some issues and implement missing features?
 
  * The app is throwing an error when we start, please help us. Also, tell us what caused the issue.
-    The issue was caused by registering RentalFeatures as a Singleton, while it depends on MovieRentalDbContext, wich is a Scoped service.
+
+   `The issue was caused by registering RentalFeatures as a Singleton, while it depends on MovieRentalDbContext, wich is a Scoped service.`
  * The rental class has a method to save, but it is not async, can you make it async and explain to us what is the difference?
  * Please finish the method to filter rentals by customer name, and add the new endpoint.
  * We noticed we do not have a table for customers, it is not good to have just the customer name in the rental.
