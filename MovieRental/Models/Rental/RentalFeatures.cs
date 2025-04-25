@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieRental.Data;
 
-namespace MovieRental.Rental
+namespace MovieRental.Models.Rental
 {
     public class RentalFeatures : IRentalFeatures
     {
@@ -11,7 +11,7 @@ namespace MovieRental.Rental
             _movieRentalDb = movieRentalDb;
         }
 
-        //TODO: make me async :(
+        
         public async Task<Rental> Save(Rental rental)
         {
             await _movieRentalDb.Rentals.AddAsync(rental);
@@ -20,10 +20,10 @@ namespace MovieRental.Rental
             return rental;
         }
 
-        //TODO: finish this method and create an endpoint for it
+        
         public IEnumerable<Rental> GetRentalsByCustomerName(string customerName)
         {
-            return _movieRentalDb.Rentals.Where(p => p.CustomerName == customerName).ToList();
+            return _movieRentalDb.Rentals.Where(p => p.Customer != null && p.Customer.CustomerName == customerName).ToList();
         }
 
     }

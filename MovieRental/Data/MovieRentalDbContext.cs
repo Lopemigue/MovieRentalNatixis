@@ -6,10 +6,11 @@ namespace MovieRental.Data
 {
 	public class MovieRentalDbContext : DbContext
 	{
-		public DbSet<Movie.Movie> Movies { get; set; }
-		public DbSet<Rental.Rental> Rentals { get; set; }
+		public DbSet<Models.Movie.Movie> Movies { get; set; }
+		public DbSet<Models.Rental.Rental> Rentals { get; set; }
+        public DbSet<Models.Customer.Customer> Customers { get; set; }
 
-		private string DbPath { get; }
+        private string DbPath { get; }
 
 		public MovieRentalDbContext()
 		{

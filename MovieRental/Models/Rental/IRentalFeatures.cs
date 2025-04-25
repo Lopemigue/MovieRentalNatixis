@@ -1,4 +1,4 @@
-﻿namespace MovieRental.Rental;
+﻿namespace MovieRental.Models.Rental;
 
 public interface IRentalFeatures
 {

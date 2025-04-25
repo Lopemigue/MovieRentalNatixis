@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using MovieRental.Movie;
-using MovieRental.Rental;
+using MovieRental.Models.Rental;
+
+
 
 namespace MovieRental.Controllers
 {
@@ -18,13 +19,13 @@ namespace MovieRental.Controllers
 
 
         [HttpPost]
-        public IActionResult Post([FromBody] Rental.Rental rental)
+        public IActionResult Post([FromBody] Models.Rental.Rental rental)
         {
 	        return Ok(_features.Save(rental));
         }
 
         [HttpGet("by-customer-name")]
-        public IEnumerable<Rental.Rental> GetRentalByCustomer([FromQuery] string customerName)
+        public IEnumerable<Models.Rental.Rental> GetRentalByCustomer([FromQuery] string customerName)
         {
             return _features.GetRentalsByCustomerName(customerName);
         }

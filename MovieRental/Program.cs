@@ -1,6 +1,5 @@
 using MovieRental.Data;
-using MovieRental.Movie;
-using MovieRental.Rental;
+using MovieRental.Models.Rental;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,6 @@
 ﻿using MovieRental.Data;
 
-namespace MovieRental.Movie
+namespace MovieRental.Models.Movie
 {
 	public class MovieFeatures : IMovieFeatures
 	{

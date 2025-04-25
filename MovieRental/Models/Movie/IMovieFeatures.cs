@@ -1,4 +1,4 @@
-﻿namespace MovieRental.Movie;
+﻿namespace MovieRental.Models.Movie;
 
 public interface IMovieFeatures
 {
