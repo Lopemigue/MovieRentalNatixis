@@ -14,6 +14,10 @@ Another difference is in performance — async methods scale better with many conc
  * We noticed we do not have a table for customers, it is not good to have just the customer name in the rental.
    Can you help us add a new entity for this? Don't forget to change the customer name field to a foreign key, and fix your previous method!
  * In the MovieFeatures class, there is a method to list all movies, tell us your opinion about it.
+   `There's no error handling, if something goes wrong like database connection fails it will throw an unhandled expression
+   It's returning directly the EF Entities exposing Internal Id's.
+   For real systems we would need DTOs,pagination and the error handling.
+   `
  * No exceptions are being caught in this api, how would you deal with these exceptions?
 
 
