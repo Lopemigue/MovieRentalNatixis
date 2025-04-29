@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MovieRental.Models.Customer;
 using MovieRental.Models.Movie;
 
 namespace MovieRental.Controllers
@@ -18,13 +19,35 @@ namespace MovieRental.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-	        return Ok(_features.GetAll());
+            var movies = _features.GetAll();
+
+            if (movies == null || !movies.Any())
+            {
+                return NotFound(new { message = "Movies not found" });
+            }
+
+            return Ok(movies);
+
         }
 
         [HttpPost]
         public IActionResult Post([FromBody] Models.Movie.Movie movie)
         {
-	        return Ok(_features.Save(movie));
+            if (movie == null)
+            {
+                return BadRequest(new { message = "Invalid movie data." });
+            }
+
+            try
+            {
+                var savedMovie = _features.Save(movie);
+                return Ok(savedMovie);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while saving the movie." });
+            }
+
         }
     }
 }

@@ -1,4 +1,5 @@
 using MovieRental.Data;
+using MovieRental.ExceptionHandler;
 using MovieRental.Models.Customer;
 using MovieRental.Models.Movie;
 using MovieRental.Models.Rental;
@@ -16,11 +17,14 @@ builder.Services.AddScoped<ICustomerFeatures, CustomerFeatures>();
 
 var app = builder.Build();
 
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<ExceptionHandler>();
 
 app.UseHttpsRedirection();
 
@@ -28,10 +32,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-using (var client = new MovieRentalDbContext())
+
+
+using (var scope = app.Services.CreateScope())
 {
-    //client.Database.EnsureDeleted();
-    client.Database.EnsureCreated();
+    var db = scope.ServiceProvider.GetRequiredService<MovieRentalDbContext>();
+    db.Database.EnsureCreated();
+
 }
 
 app.Run();

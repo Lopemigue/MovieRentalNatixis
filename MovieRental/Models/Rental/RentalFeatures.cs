@@ -11,7 +11,12 @@ namespace MovieRental.Models.Rental
             _movieRentalDb = movieRentalDb;
         }
 
-        
+        public async Task<List<Rental>> GetAll()
+        {
+            var allRentals = await _movieRentalDb.Rentals.ToListAsync();
+            return allRentals;
+        }
+
         public async Task<Rental> Save(Rental rental)
         {
             await _movieRentalDb.Rentals.AddAsync(rental);
@@ -21,9 +26,9 @@ namespace MovieRental.Models.Rental
         }
 
         
-        public IEnumerable<Rental> GetRentalsByCustomerName(string customerName)
+        public async Task<IEnumerable<Rental>> GetRentalsByCustomerName(string customerName)
         {
-            return _movieRentalDb.Rentals.Where(p => p.Customer != null && p.Customer.CustomerName.Equals(customerName)).ToList();
+            return await _movieRentalDb.Rentals.Where(p => p.Customer != null && p.Customer.CustomerName.Equals(customerName)).ToListAsync(); ;
         }
 
     }

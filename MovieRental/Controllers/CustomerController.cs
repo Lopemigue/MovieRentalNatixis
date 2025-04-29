@@ -19,14 +19,33 @@ namespace MovieRental.Controllers
         {
             var customers = await _features.GetAll();
 
+            if (customers == null || !customers.Any())
+            {
+                return NotFound(new { message = "Customers not found" });
+            }
+
             return Ok(customers);
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Customer customer)
         {
-            var savedCustomer = await _features.Save(customer);
-            return Ok(savedCustomer);
+            if (customer == null)
+            {
+                return BadRequest(new { message = "Invalid customer data." });
+            }
+
+            try
+            {
+                var savedCustomer = await _features.Save(customer);
+                return Ok(savedCustomer);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new {message= "An error occurred while saving the customer." });
+            }
+            
+            
         }
 
     }
